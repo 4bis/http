@@ -321,6 +321,8 @@ class Client extends EventEmitter
         }
 
         curl_setopt_array($this->curlHandle, $settings);
+        curl_setopt($this->curlHandle, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        
         $response = $this->curlExec($this->curlHandle);
         $response = $this->parseResponse($response, $this->curlHandle);
         if (self::STATUS_CURLERROR === $response['status']) {
